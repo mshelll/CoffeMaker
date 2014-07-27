@@ -1,0 +1,20 @@
+#include "UserInterface_Test.h"
+
+
+using testing::_;
+using testing::ElementsAre;
+using testing::Property;
+using testing::Matcher;
+using testing::Return;
+using testing::SetArgPointee;
+using testing::Mock;
+
+TEST_F(UserInterface_Test, StartBrewing_Empty_Result)
+{
+	EXPECT_CALL(*coffee_control, IsHotWaterSourceReady()).Times(1);
+	ui->StartBrewing();
+
+}
+
+
+

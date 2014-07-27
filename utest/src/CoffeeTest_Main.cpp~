@@ -1,0 +1,66 @@
+#include "CoffeeTest_Main.h"
+
+#include "M4CoffeeMaker/M4HotWaterSource.h"
+#include "M4CoffeeMaker/M4ContainmentVessel.h"
+#include "M4CoffeeMaker/M4UserInerface.h"
+
+
+
+
+CoffeeTest_Main::CoffeeTest_Main()
+{
+
+
+}
+
+
+CoffeeTest_Main::~CoffeeTest_Main()
+{
+
+
+}
+
+
+void CoffeeTest_Main::InitializeComponents()
+{
+	InitializeHotWaterSource();
+
+	InitializeContainmentVessel();
+
+	InitializeUserInterface();
+}
+
+void CoffeeTest_Main::InitializeHotWaterSource()
+{
+	HotWaterSource *hws = new M4HotWaterSource;
+	CoffeeControl.setHotWaterSourceImpl(hws);
+}
+
+
+void CoffeeTest_Main::InitializeContainmentVessel()
+{
+	ContainmentVessel *cv = new M4ContainmentVessel;
+	CoffeeControl.setContainmentVesselImpl(cv);
+}
+
+void CoffeeTest_Main::InitializeUserInterface()
+{
+	UserInterface *ui = new M4UserInterface;
+	CoffeeControl.setUserInterfaceImpl(ui);
+}
+
+
+int main(int argc, char **argv)
+{
+	CoffeeTest_Main *coffee = new CoffeeTest_Main;
+
+	coffee->InitializeComponents();
+
+	::testing::InitGoogleTest(&argc, argv);
+
+	return RUN_ALL_TESTS();
+
+}
+
+
+
